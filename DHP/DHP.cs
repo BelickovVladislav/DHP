@@ -92,6 +92,38 @@ namespace DHP
 
         }
 
+        public void PrintOriginalPicture()
+        {
+            Console.WriteLine("original picture");
+            printPicture(x, y);
+        }
+
+        public void PrintDecodePicture()
+        {
+            Console.WriteLine("decode picture");
+            printPicture(decodeByGv(gvxDiff), decodeByGv(gvyDiff));
+        }
+
+        private void printPicture(int[] xCoordinate, int[] yCoordinate)
+        {
+            var xMax = xCoordinate.Max();
+            var yMax = yCoordinate.Max();
+            for (int i = 0; i <= xMax; i++)
+            {
+                for (int j = 0; j <= yMax; j++)
+                    Console.Write(isPoint(i, xCoordinate, j, yCoordinate) ? '*' : ' ');
+                Console.WriteLine();
+            }
+        }
+
+        private bool isPoint(int x, int[] xCoordinate, int y, int[] yCoordinate)
+        {
+            for (int i = 0; i < xCoordinate.Length; i++)
+                if (xCoordinate[i] == x && yCoordinate[i] == y)
+                    return true;
+            return false;
+        }
+
         private int[] decodeByGv(Dictionary<int, double> gv)
         {
             int[] result = new int[x.Length];

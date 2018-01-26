@@ -10,10 +10,16 @@ namespace DHP
     {
         static void Main(string[] args)
         {
-            DHP dhp = new DHP();
-            dhp.PrintMatrix();
-            dhp.Encode(5, 6);
-            dhp.Decode();
+            try
+            {
+                DHP dhp = new DHP();
+                dhp.PrintMatrix();
+                dhp.PrintOriginalPicture();
+                dhp.Encode(4, 4);
+                dhp.Decode();
+                dhp.PrintDecodePicture();
+            }
+            catch { }
             Console.ReadKey();
         }
     }
