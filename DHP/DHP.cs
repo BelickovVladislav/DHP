@@ -33,7 +33,7 @@ namespace DHP
         private int[] initCordinate(string axis)
         {
 
-            Console.WriteLine("Enter {0}n: ", axis.ToUpper());
+            Console.Write("Enter {0}n: ", axis.ToUpper());
             var cordString = Console.ReadLine();
             var cordStringSplited = cordString.Split(',');
             int[] cordinates = new int[cordStringSplited.Length];
@@ -106,11 +106,9 @@ namespace DHP
 
         private void printPicture(int[] xCoordinate, int[] yCoordinate)
         {
-            var xMax = xCoordinate.Max();
-            var yMax = yCoordinate.Max();
-            for (int i = 0; i <= xMax; i++)
+            for (int i = xCoordinate.Min(); i <= xCoordinate.Max(); i++)
             {
-                for (int j = 0; j <= yMax; j++)
+                for (int j = yCoordinate.Min(); j <= yCoordinate.Max(); j++)
                     Console.Write(isPoint(i, xCoordinate, j, yCoordinate) ? '*' : ' ');
                 Console.WriteLine();
             }
