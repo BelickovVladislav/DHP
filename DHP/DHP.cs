@@ -33,7 +33,7 @@ namespace DHP
         private int[] initCordinate(string axis)
         {
 
-            Console.WriteLine("Enter {0}n: ", axis.ToUpper());
+            Console.Write("Enter {0}n: ", axis.ToUpper());
             var cordString = Console.ReadLine();
             var cordStringSplited = cordString.Split(',');
             int[] cordinates = new int[cordStringSplited.Length];
@@ -90,6 +90,36 @@ namespace DHP
 
             Console.WriteLine("{x} = { " + join(xDecode, ", ") + "  }\n{y} = { " + join(yDecode, ", ") + " }");
 
+        }
+
+        public void PrintOriginalPicture()
+        {
+            Console.WriteLine("original picture");
+            printPicture(x, y);
+        }
+
+        public void PrintDecodePicture()
+        {
+            Console.WriteLine("decode picture");
+            printPicture(decodeByGv(gvxDiff), decodeByGv(gvyDiff));
+        }
+
+        private void printPicture(int[] xCoordinate, int[] yCoordinate)
+        {
+            for (int i = xCoordinate.Min(); i <= xCoordinate.Max(); i++)
+            {
+                for (int j = yCoordinate.Min(); j <= yCoordinate.Max(); j++)
+                    Console.Write(isPoint(i, xCoordinate, j, yCoordinate) ? '*' : ' ');
+                Console.WriteLine();
+            }
+        }
+
+        private bool isPoint(int x, int[] xCoordinate, int y, int[] yCoordinate)
+        {
+            for (int i = 0; i < xCoordinate.Length; i++)
+                if (xCoordinate[i] == x && yCoordinate[i] == y)
+                    return true;
+            return false;
         }
 
         private int[] decodeByGv(Dictionary<int, double> gv)
